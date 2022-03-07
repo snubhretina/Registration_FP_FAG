@@ -21,10 +21,10 @@ os.environ["CUDA_VISIBLE_DEVICES"] = "2,3"
 # make directory from path(same os.makedirs(path, exist_ok=True) on python 3.x)
 
 parser = argparse.ArgumentParser(description='PyTorch Multimodal registration of fundus images With fluorescein angiography for fine-scale vessel segmentation')
-parser.add_argument('--data_path', type=str, default='',
-                    help='input path(default : data)')
+parser.add_argument('--data_path', type=str, default='./data',
+                    help='input path(default : ./data)')
 parser.add_argument('--res_path', type=str, default='',
-                    help='input path(default : data)')
+                    help='input path(default : ./res)')
 parser.add_argument('--fp_model_path', type=str, default='',
                     help='fp model path(default : none)')
 parser.add_argument('--fag_model_path', type=str, default='',
