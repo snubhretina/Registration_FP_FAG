@@ -6,6 +6,7 @@ This repository described in the paper "Fully Leveraging Deep Learning Methods f
 ## Usage
 
 ### Installation
+This code works in python 2.7
 ```
 git clone snubhretina/Registration_FP_FAG
 cd Registration_FP_FAG
