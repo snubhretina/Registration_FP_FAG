@@ -2,7 +2,7 @@ from __future__ import print_function
 
 import os
 import torch
-import utils_220208
+import utils
 import argparse
 import PIL.Image as Image
 import numpy as np
@@ -50,7 +50,7 @@ mkdir(save_path)
 # FA_model_weight_path = './DL_model/FA/sub_mean_model_8400_iter_loss_35412.4364.pth.tar'
 FP_model_weight_path = args.fp_model_path
 FA_model_weight_path = args.fag_model_path
-FAG_model, FP_model = utils_220208.get_model(FP_model_weight_path, FA_model_weight_path)
+FAG_model, FP_model = utils.get_model(FP_model_weight_path, FA_model_weight_path)
 
 # save directory name list
 intermedia_result_method_name = ['/1.SIFT/', '/2.VesselProb/', '/3.BSP_FAG/', '/4.Aggregation/', '/5.Chamfer/', '/6.BSP_FP-FAG/', '/7.Final/']
@@ -66,18 +66,18 @@ for seq_idx, seq_dir in enumerate(sorted(os.listdir(DB_path))): # loop for image
     img_path = DB_path + seq_dir
     # declare for each recording space.
     FAG_list_path = glob.glob(img_path + "/*FAG2FP.png") # FAG data.
-    FAG_list = utils_220208.image_load(FAG_list_path)
+    FAG_list = utils.image_load(FAG_list_path)
     FP_path = glob.glob(img_path + "/*origin.png") # Fundus Photo data.
-    FP = utils_220208.image_load(FP_path)[0]
+    FP = utils.image_load(FP_path)[0]
 
-    FOV_mask = utils_220208.make_FOV(FP)
+    FOV_mask = utils.make_FOV(FP)
 
     #FAG registration
-    FAG_reg_class = utils_220208.FAG_registration(FAG_model, FAG_list, FOV_mask)
+    FAG_reg_class = utils.FAG_registration(FAG_model, FAG_list, FOV_mask)
     FAagg_vessel_mean_map, FAagg_vessel_max_map = FAG_reg_class.all_registration()
     
     #FP registration
-    FP_reg_class = utils_220208.FP_registration(FP_model, FP, FAagg_vessel_mean_map, FAagg_vessel_max_map, FOV_mask)
+    FP_reg_class = utils.FP_registration(FP_model, FP, FAagg_vessel_mean_map, FAagg_vessel_max_map, FOV_mask)
     Registrated_map = FP_reg_class.all_registration()
 
     #Mask between FP - FAG
