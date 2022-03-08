@@ -1,4 +1,4 @@
-# Registration_FP_FAG
+# Fully Leveraging Deep Learning Methods for Constructing Retinal Fundus Photomontages
 
 ## Introduction
 This repository described in the paper "Fully Leveraging Deep Learning Methods for Constructing Retinal Fundus Photomontages" (https://ieeexplore.ieee.org/abstract/document/9050794)
